@@ -23,8 +23,10 @@ Simple helper functions for kdb usage
     }
 
 .util.string:{
-    $[10h~abs type x;
+    $[10h~abs t:type x;
         x;
+        t in 98 99h;
+        .Q.s x;
         string x]
     }
 

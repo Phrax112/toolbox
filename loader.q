@@ -42,4 +42,4 @@ This is helper script to allow loading of files in a safe and controlled way
 .ld.
 
 //*** RUNNER
-
+.ld.require["toolbox/log.q"];
