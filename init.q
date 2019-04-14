@@ -4,21 +4,8 @@
 
 \
 
-//*** COMMAND LINE PARAMS
-
-// params:.Q.def[enlist[`date]!enlist .z.D-1].Q.opt .z.x;
-
 //*** REQUIRED SCRIPTS
-\l castUtils.q
-\l log.q
-\l loader.q
-
-
-//*** HANDLES
-
-//*** GLOBAL VARS
-
-// *** FUNCTIONS
-
-//*** RUNNER
-
+.tb.ROOT:first ` vs hsym`$getenv`QINIT;
+system"l ",string ` sv (.tb.ROOT;`castUtils.q);
+system"l ",string ` sv (.tb.ROOT;`log.q);
+system"l ",string ` sv (.tb.ROOT;`loader.q);
