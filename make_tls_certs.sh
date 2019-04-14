@@ -3,10 +3,10 @@
 certDir=$1
 
 if [ -z "$certDir" ]; then
-    certDir=$HOME/certs
+    certDir=$HOME/.ssh/tls_certs
 fi
 
-mkdir $certDir 
+mkdir -p $certDir 
 cd $certDir
 
 echo "Creating certs at: `pwd`"
