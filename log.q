@@ -1,18 +1,8 @@
 //*** DESCRIPTION
-
 /
-
-Logging Utilities for q programming language
-
+Logging utilities for the q programming language
 Can log to a standardised location or to the stdout
-
 \
-
-//*** COMMAND LINE PARAMS
-
-// params:.Q.def[enlist[`date]!enlist .z.D-1].Q.opt .z.x;
-
-//*** REQUIRED SCRIPTS
 
 //*** GLOBAL VARS
 
@@ -23,8 +13,6 @@ Can log to a standardised location or to the stdout
 // Specify `stdout for stdout and `file for the logfile
 //.log.WRITEOUT:`file;
 .log.WRITEOUT:`stdout;
-
-//*** HANDLES
 
 // *** FUNCTIONS
 
@@ -57,12 +45,14 @@ Can log to a standardised location or to the stdout
 // Dictionaries and tables will be on new lines
 // Everything else is seperated by | markers
 .log.fmt:{[str;t]
+    str:trim str;
     $[any t within/:((0;9h);(11;97h));
-        raze[str]," | ";
+        raze[str]," ";
         t in 98 99h;
             "\n",str;
-            str," | "
+            str," "
             ]
+    
     }
 
 // Get the handle to send the logs to
@@ -83,7 +73,7 @@ Can log to a standardised location or to the stdout
 
 // Helper function to output a message to a log location with a certain urgency indicator
 .log.out:{[msg;lvl]
-    ts:type@/:out:.z.P,lvl,.util.nlist msg;
+    ts:type@/:out:.z.P,"|",lvl,"|",.util.nlist msg;
     .log.sendMsg raze .log.fmt'[.util.string@/:out;ts];
     }
 

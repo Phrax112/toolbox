@@ -40,7 +40,7 @@ This is helper script to allow loading of files in a safe and controlled way
     chkPath:@[.ld.read;file;0b];
     if[not chkPath~0b;
         .log.info("File loaded:";file);
-        if[once;.ld.LOADED,::file];
+        if[once;.ld.LOADED,::`$file];
         :()
         ];
     filepath:first (raze/).ld.findFile[;.util.string file;.ld.DEPTH] each .ld.PATH;
