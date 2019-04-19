@@ -36,9 +36,9 @@ Can log to a standardised location or to the stdout
     out[`logpath]:.Q.dd . out[`dir`file];
     out[`date]:.z.D;
     out[`out]:.log.WRITEOUT;
-    out[`handle]:$[out[`out]~`stdout;-1;neg hopen out[`logpath]];
+    out[`INFO]:$[out[`out]~`stdout;-1;neg hopen out[`logpath]];
+    out[`ERROR]:$[out[`out]~`stdout;-2;neg hopen out[`logpath]];
     .log.OUT:out;
-    out[`handle]
     }
 
 // Format the messages passed to the log functions
@@ -51,30 +51,28 @@ Can log to a standardised location or to the stdout
         t in 98 99h;
             "\n",str;
             str," "
-            ]
-    
+            ] 
     }
 
 // Get the handle to send the logs to
 // Handle will be <0 for sending to a file and -1 otherwise
-.log.getHandle:{
-    $[not .z.D~.log.OUT[`date];
-        .log.setOut[];
-        .log.OUT[`handle]
-        ]
+.log.getHandle:{[lvl]
+    if[not .z.D~.log.OUT[`date];
+        .log.setOut[]];
+    .log.OUT lvl
     }
 
 // Send the message to the log location
 // If something is broken then set the log handle to standard out
-.log.sendMsg:{[msg]
-    h:.log.getHandle[.z.D];
-    @[h;msg;{.log.OUT[`handle]::-1;-1"Unable to send to handle:",.Q.s x}];
+.log.sendMsg:{[lvl;msg]
+    h:.log.getHandle[lvl];
+    @[h;msg;{[x;y].log.OUT[x]::$[x~`ERROR;-2;-1];-2"Unable to send to handle:",.Q.s y}[lvl;]];
     }
 
 // Helper function to output a message to a log location with a certain urgency indicator
 .log.out:{[msg;lvl]
     ts:type@/:out:.z.P,"|",lvl,"|",.util.nlist msg;
-    .log.sendMsg raze .log.fmt'[.util.string@/:out;ts];
+    .log.sendMsg[lvl;] raze .log.fmt'[.util.string@/:out;ts];
     }
 
 // Use to send normal messages to the log file

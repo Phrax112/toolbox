@@ -3,7 +3,20 @@
 /
 Toolbox
 
-This is helper script to allow loading of files in a safe and controlled way
+This is a helper script to allow loading of files in a safe and controlled way
+
+The logic works as following
+    1) The filepath passed is checked to see if it is valid
+    2) If it is then the file is loaded
+    3) If the filepath passed is not valid then the set directories are recursively searched
+    4) If any file matching the one passed is found then it is loaded
+    5) If no file is found that matches the value passed then nothing is done
+
+If it is specified that the file should only be loaded once then a has of its contnets is added to the .ld.LOADED dictionary. This is checked against for every subsequent file load to ensure that it is not loaded again
+
+To add root dierctories under which files should be looked for then just add them under the .ld.PATH variable.
+
+By default the root directories that are searched are those defined by the QPATH and QHOME environmental variables
 
 \
 
@@ -11,6 +24,8 @@ This is helper script to allow loading of files in a safe and controlled way
 
 // Create the paths where files will be searched for
 .ld.PATH:hsym`$getenv[`QPATH`QHOME];
+
+// Define the dictioanry where the hashes of loaded files will be kept
 .ld.LOADED:enlist[`]!();
 
 // Level of filesystem depth to recursively check for the requested file
