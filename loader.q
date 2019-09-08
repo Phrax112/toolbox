@@ -88,8 +88,8 @@ By default the root directories that are searched are those defined by the QPATH
         ];
     }
 
-// If you want to enforce a file is loaded only once use loadOnce
-.ld.loadOnce:.ld.load[;1b];
+// If you want to enforce a file is loaded only once use getOnce
+.ld.getOnce:.ld.load[;1b];
 
 // If a file can be loaded multiple times use the get function
 .ld.get:.ld.load[;0b];
@@ -97,6 +97,6 @@ By default the root directories that are searched are those defined by the QPATH
 / 
 Example:
 
-.ld.loadOnce "toolbox/castUtils.q";
+.ld.getOnce "toolbox/castUtils.q";
 .ld.get "castUtils.q";
-.ld.loadOnce `:/Users/gmoy/q/q.q;
+.ld.getOnce `:/Users/gmoy/q/q.q;
