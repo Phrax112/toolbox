@@ -36,7 +36,7 @@ By default the root directories that are searched are those defined by the QPATH
 
 // File to recursively check the library directories for file names that match
 .ld.findFile:{[root;file;depth]
-    if[depth<1;
+    if[(depth<1) & (11h=type key[root]);
         :key[root] where key[root] like ("*/",file)];
     $[11h=type subdir:key root;
         .z.s[;file;depth-1] each ` sv/:root,/:subdir;
