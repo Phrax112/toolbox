@@ -23,7 +23,7 @@ By default the root directories that are searched are those defined by the QPATH
 //*** GLOBAL VARS
 
 // Create the paths where files will be searched for
-.ld.PATH:hsym`$getenv[`QPATH`QHOME];
+.ld.PATH:.ld.PATH where not null .ld.PATH:hsym`$getenv[`QAPPS`QHOME`QPATH];
 
 // Define the dictioanry where the hashes of loaded files will be kept
 .ld.LOADED:enlist[`]!();

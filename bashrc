@@ -38,3 +38,5 @@ cC () {
     cc -std=c99 -Wall $2 $cFile -o $eFile
     echo "$cFile --> $eFile"
 }
+
+eval $(docker-machine env)
