@@ -12,11 +12,11 @@ The logic works as following
     4) If any file matching the one passed is found then it is loaded
     5) If no file is found that matches the value passed then nothing is done
 
-If it is specified that the file should only be loaded once then a has of its contnets is added to the .ld.LOADED dictionary. This is checked against for every subsequent file load to ensure that it is not loaded again
+If it is specified that the file should only be loaded once then a hash of its contents (first 1000 bytes) is added to the .ld.LOADED dictionary. This is checked against for every subsequent file load to ensure that it is not loaded again
 
 To add root dierctories under which files should be looked for then just add them under the .ld.PATH variable.
 
-By default the root directories that are searched are those defined by the QPATH and QHOME environmental variables
+By default the root directories that are searched are those defined by the QAPPS, QPATH and QHOME environmental variables
 
 \
 
