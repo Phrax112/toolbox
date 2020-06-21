@@ -4,7 +4,6 @@ cyan=$(tput setaf 6)
 purple=$(tput setaf 5)
 reset=$(tput sgr0)
 PS1='\[$purple\][\[$cyan\]\u \W\[$purple\]]$ \[$reset\]'
-#PS1='\e[0;35m[\e[m\e[0;36m\u \W\e[m\e[0;35m]\$\e[m '
 
 shopt -s checkwinsize
 
@@ -12,7 +11,6 @@ alias ls='ls --color=auto'
 alias ll='ls -lhtr --color=auto'
 alias vi='vim'
 alias psg=' ps -ef | grep -v grep | grep -i '
-alias bfeed='ssh -oStrictHostKeyChecking=off gmoy@35.246.78.170'
 alias wk="cd ~/workspace"
 alias k="rlwrap k"
 alias vpn='protonvpn'
