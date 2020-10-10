@@ -78,7 +78,7 @@ By default the root directories that are searched are those defined by the QAPPS
             .log.info("File already loaded";file);:()]
         ];
     filepath:first (raze/).ld.findFile[;.util.string file;.ld.DEPTH] each .ld.PATH;
-    if[null filepath;.log.info("Could not find file";file);:()];
+    if[0=count filepath;.log.info("Could not find file";file);:()];
     chkLoad:.[.ld.read;(filepath;once);`loadError];
     $[chkLoad in `force`new;
         .log.info("File loaded:";filepath);
