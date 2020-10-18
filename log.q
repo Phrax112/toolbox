@@ -72,7 +72,7 @@ Can log to a standardised location or to the stdout
 // Helper function to output a message to a log location with a certain urgency indicator
 .log.out:{[msg;lvl]
     ts:type@/:out:.z.P,"|",lvl,"|",.util.nlist msg;
-    .log.sendMsg[lvl;] raze .log.fmt'[.util.string@/:out;ts];
+    .log.sendMsg[lvl;] (raze/).log.fmt'[.util.string@/:out;ts];
     }
 
 // Use to send normal messages to the log file
